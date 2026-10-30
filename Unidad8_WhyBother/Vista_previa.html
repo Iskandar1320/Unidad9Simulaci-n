@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#08090b" />
+    <meta name="description" content="Why Bother? Una obra interactiva en nueve momentos sobre crear, pensar y elegir en tiempos de inteligencia artificial." />
+    <title>MAQUETA VISUAL · Why Bother?</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="app">
+      <div id="scene-container" aria-hidden="true"></div>
+      <div class="vignette" aria-hidden="true"></div>
+      <div id="transition-layer" aria-hidden="true"></div>
+      <div id="ending-flash" aria-hidden="true"></div>
+      <header class="site-header">
+        <a class="brand" href="#inicio" aria-label="Volver al inicio"><span class="brand-symbol">✳</span><span>SIMULACIÓN<br>DE SISTEMAS</span></a>
+        <span class="unit-label">MAQUETA VISUAL <span class="unit-separator">/</span> PARA PROBAR DISEÑO Y TEXTOS</span>
+        <button id="sound-toggle" class="header-action" type="button" aria-label="Activar o desactivar el sonido"><span class="sound-icon" aria-hidden="true">◌</span><span class="sound-label">SONIDO: NO</span></button>
+      </header>
+      <main>
+        <div class="scene-index"><span id="scene-index">01</span><span class="slash"> / </span><span>09</span><span class="index-rule"></span><span class="index-word">MOMENTOS</span></div>
+        <section class="narrative" aria-live="polite">
+          <div class="eyebrow"><span class="eyebrow-line"></span><span id="scene-label">EL COMIENZO</span></div>
+          <h1 id="scene-title">¿VAS A JUGAR<br><em>A LA RULETA?</em></h1>
+          <p id="scene-description">Nueve momentos. Nueve preguntas. Ninguna respuesta que alguien pueda elegir por ti.</p>
+          <div class="scene-quote" id="scene-quote">¿Para qué tomarte el trabajo?</div>
+        </section>
+        <div class="action-dock">
+          <button type="button" id="prev-button" class="secondary-button" disabled aria-label="Escena anterior"><span>←</span><span class="secondary-label">ANTERIOR</span></button>
+          <button type="button" id="next-button" class="primary-button"><span class="button-text">COMENZAR</span><span class="button-arrow">↗</span></button>
+        </div>
+        <div class="micro-note">VISTA CONCEPTUAL <span>·</span> LA VERSIÓN 3D SE ABRE CON VITE <span>·</span> UTILIZA ← → PARA RECORRERLA</div>
+      </main>
+      <aside class="scene-map" aria-label="Navegación entre escenas">
+        <div class="map-head"><span>EL RECORRIDO</span><span class="map-line"></span></div>
+        <div id="chapters" class="chapters"></div>
+        <div class="map-foot"><span id="scene-short-name">LA INVITACIÓN</span><span class="scroll-indicator">↕</span></div>
+      </aside>
+      <footer class="site-footer">
+        <div class="progress"><div class="progress-fill" id="progress-fill"></div></div>
+        <div class="footer-bottom"><span>¿PARA QUÉ TOMARTE EL TRABAJO?</span><button id="reference-button" type="button">VER REFERENCIA <span>↗</span></button><span>NO ES UNA RESPUESTA, ES UNA PREGUNTA.</span></div>
+      </footer>
+      <div id="reference-overlay" class="reference-overlay" hidden>
+        <div class="reference-dialog" role="dialog" aria-modal="true" aria-label="Referencia visual de la escena">
+          <div class="reference-head"><span>STORYBOARD · UNIDAD 08</span><button id="close-reference" type="button" aria-label="Cerrar referencia">✕</button></div>
+          <img id="reference-image" src="" alt="Referencia del storyboard" />
+          <div class="reference-foot"><div><strong id="reference-title">ESCENA</strong><p id="reference-technique">Modelos sencillos en Three.js.</p></div><span>REFERENCIA CONCEPTUAL</span></div>
+        </div>
+      </div>
+      <div id="error-view" class="error-view" hidden><h2>No se pudo iniciar la escena 3D</h2><p>Comprueba que el navegador tenga WebGL activado. Puedes seguir consultando las preguntas y las referencias del storyboard.</p></div>
+    </div>
+    <link rel="stylesheet" href="./src/style.css" /><script defer src="./src/mockup.js"></script>
+  </body>
+</html>
