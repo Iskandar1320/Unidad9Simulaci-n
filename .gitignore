@@ -1,0 +1,11 @@
+# Dependencias generadas localmente: no subir a GitHub
+Unidad8_WhyBother/node_modules/
+
+# Archivos creados durante la compilacion
+Unidad8_WhyBother/dist/
+
+# Cachés, logs y variables locales
+Unidad8_WhyBother/.vite/
+Unidad8_WhyBother/.env.local
+Unidad8_WhyBother/.env.*.local
+*.log

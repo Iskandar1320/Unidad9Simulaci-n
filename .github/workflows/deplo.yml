@@ -16,38 +16,45 @@ concurrency:
 
 jobs:
   deploy:
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
 
     defaults:
       run:
         working-directory: Unidad8_WhyBother
 
     steps:
-      - name: Descargar el repositorio
-        uses: actions/checkout@v4
+      - name: Descargar repositorio
+        uses: actions/checkout@v6
 
-      - name: Configurar Node.js
-        uses: actions/setup-node@v4
+      - name: Preparar Node.js
+        uses: actions/setup-node@v7
         with:
           node-version: '22'
+          package-manager-cache: false
 
-      - name: Instalar dependencias
-        run: npm install --no-audit --no-fund
+      - name: Limpiar dependencias instaladas en Windows
+        run: rm -rf node_modules
 
-      - name: Compilar proyecto Vite
+      - name: Instalar dependencias limpias en Linux
+        run: npm ci --include=dev --no-audit --no-fund
+
+      - name: Comprobar Vite
+        run: node ./node_modules/vite/bin/vite.js --version
+
+      - name: Compilar pagina
         run: npm run build
 
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5
 
       - name: Subir sitio compilado
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: Unidad8_WhyBother/dist
 
-      - name: Publicar en GitHub Pages
+      - name: Publicar pagina
         id: deployment
         uses: actions/deploy-pages@v4
