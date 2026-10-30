@@ -423,3 +423,220 @@ h1 em{font-weight:600;font-style:normal;color:var(--accent-strong)}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{scroll-behavior:auto!important;transition-duration:0.01ms!important;animation-duration:0.01ms!important}
 }
+
+
+/* --------------------------------------------------------------------------
+   AJUSTE DE MAQUETACIÓN — Unidad 8
+   Los títulos pueden ocupar de 2 a 5 renglones según el momento. La narrativa
+   y los controles pertenecen ahora a una sola columna de flujo. Ningún botón
+   utiliza coordenadas absolutas con respecto a la tarjeta de texto.
+   -------------------------------------------------------------------------- */
+
+main {
+  position:absolute;
+  inset:0;
+  z-index:2;
+  pointer-events:none;
+}
+
+.scene-index { pointer-events:auto; }
+
+.content-stack {
+  position:absolute;
+  left:4.3vw;
+  top:clamp(146px, 21.5vh, 205px);
+  bottom:110px;
+  width:min(548px, 43vw);
+  min-height:0;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:14px;
+  overflow-x:hidden;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(233,167,113,.55) transparent;
+  padding:2px 7px 12px 2px;
+  pointer-events:auto;
+}
+
+.content-stack::-webkit-scrollbar { width:5px; }
+.content-stack::-webkit-scrollbar-thumb { background:rgba(233,167,113,.4); border-radius:99px; }
+.content-stack::-webkit-scrollbar-track { background:transparent; }
+
+.narrative {
+  position:relative;
+  left:auto;
+  top:auto;
+  width:100%;
+  min-height:0;
+  flex-shrink:0;
+  padding:24px 26px 26px;
+  border-radius:26px;
+}
+
+.narrative h1 {
+  font-size:clamp(38px, 3.6vw, 64px);
+  line-height:1.02;
+  letter-spacing:-.065em;
+  max-width:100%;
+  text-wrap:balance;
+  overflow-wrap:break-word;
+}
+
+.narrative .eyebrow { margin-bottom:15px; }
+.narrative #scene-description {
+  font-size:14px;
+  line-height:1.6;
+  margin-top:18px;
+}
+.narrative .scene-quote {
+  font-size:14px;
+  line-height:1.57;
+  margin-top:15px;
+}
+
+.action-dock {
+  position:relative;
+  left:auto;
+  bottom:auto;
+  display:flex;
+  flex:0 0 auto;
+  align-items:center;
+  gap:12px;
+  margin:0;
+  pointer-events:auto;
+}
+.action-dock .primary-button,
+.action-dock .secondary-button { height:55px; }
+.action-dock .primary-button { min-width:190px; }
+.action-dock .secondary-button { min-width:116px; }
+
+.micro-note {
+  position:relative;
+  left:auto;
+  bottom:auto;
+  display:block;
+  flex:0 0 auto;
+  margin-top:0;
+  font-size:8px;
+  line-height:1.65;
+  color:#b5b1aa;
+}
+
+.scene-map {
+  top:clamp(148px, 21vh, 205px);
+  bottom:105px;
+  max-height:calc(100vh - 255px);
+  overflow-y:auto;
+  scrollbar-width:thin;
+}
+
+@media(max-width:1180px) and (min-width:981px) {
+  .content-stack { width:min(500px, 51vw); }
+  .narrative h1 {font-size:clamp(38px, 4.0vw, 54px);}
+  .scene-map {width:180px;right:3.3vw;}
+}
+
+@media(max-height:760px) and (min-width:981px) {
+  .content-stack {top:clamp(118px, 20vh, 155px); bottom:98px; gap:11px;}
+  .narrative {padding:19px 23px 20px;}
+  .narrative h1 {font-size:clamp(35px, 3.35vw, 57px);}
+  .narrative .eyebrow {margin-bottom:11px;}
+  .narrative #scene-description {margin-top:13px; font-size:12.5px; line-height:1.5;}
+  .narrative .scene-quote {margin-top:12px; font-size:12.5px; line-height:1.5;}
+  .action-dock .primary-button,.action-dock .secondary-button {height:50px;}
+  .scene-map {top:20vh; bottom:95px; max-height:calc(100vh - 210px);}
+}
+
+/* A partir de este ancho, la página muestra el contenido en una única columna.
+   En pantallas angostas no existe espacio real para texto y menú lateral. */
+@media(max-width:980px) {
+  html,body {height:auto; min-height:100%; overflow-x:hidden; overflow-y:auto;}
+  #app {height:auto; min-height:100svh; overflow:visible;}
+  #scene-container,.vignette {position:fixed;inset:0;}
+  #app::before,#app::after {position:fixed;}
+  .site-header {
+    position:relative;
+    left:auto;right:auto;top:auto;
+    padding:18px 5vw 0;
+    width:100%;
+  }
+  .unit-label {display:none;}
+  main {
+    position:relative;
+    inset:auto;
+    padding:22px 5vw 205px;
+    display:block;
+  }
+  .scene-index {
+    position:relative;
+    top:auto;left:auto;
+    margin:0 0 17px;
+    padding:9px 13px;
+  }
+  .content-stack {
+    position:relative;
+    left:auto;top:auto;bottom:auto;
+    width:min(100%, 630px);
+    height:auto;
+    min-height:0;
+    padding:0;
+    gap:15px;
+    overflow:visible;
+    pointer-events:auto;
+  }
+  .narrative {width:100%; min-height:0; padding:25px 25px 26px;}
+  .narrative h1 {font-size:clamp(34px, 6.1vw, 54px); line-height:1.02;}
+  .narrative #scene-description {font-size:13px; max-width:100%;}
+  .narrative .scene-quote {font-size:13px; max-width:100%;}
+  .action-dock {position:relative; left:auto; bottom:auto;gap:10px; flex-wrap:wrap;}
+  .action-dock .primary-button,.action-dock .secondary-button {height:52px;}
+  .micro-note {display:none;}
+  .scene-map {
+    position:fixed;
+    top:auto;left:5vw;right:5vw;bottom:90px;
+    width:auto;
+    max-height:none;
+    padding:9px 11px;
+    border-radius:17px;
+  }
+  .map-head,.map-foot,.chapter-name,.chapter-mark {display:none;}
+  .chapters {display:flex; flex-direction:row; flex-wrap:nowrap; justify-content:space-between; gap:5px;}
+  .chapter,.chapter.is-active {
+    flex:1 1 0;
+    display:flex;
+    justify-content:center;
+    padding:9px 0;
+    border-radius:10px;
+    border:1px solid rgba(255,255,255,.09);
+    background:rgba(255,255,255,.04);
+  }
+  .chapter.is-active {background:rgba(230,162,96,.15);border-color:rgba(230,162,96,.6);}
+  .chapter-number {width:auto; font-size:9px;}
+  .site-footer {
+    position:fixed;
+    left:5vw;right:5vw;bottom:12px;
+    padding:11px 13px 12px;
+    border-radius:17px;
+  }
+  .footer-bottom>span:last-child {display:none;}
+  .footer-bottom {font-size:8px;}
+  .vignette {background:linear-gradient(90deg,rgba(7,11,16,.83),rgba(7,11,16,.34)),linear-gradient(0deg,rgba(7,10,15,.73),transparent 75%);}
+}
+
+@media(max-width:520px) {
+  .brand {padding:9px 10px;font-size:8px;}
+  .brand-symbol {font-size:26px;}
+  .header-action {padding:0 10px;font-size:9px;}
+  main {padding-top:17px;}
+  .narrative {padding:21px 19px 22px; border-radius:22px;}
+  .narrative h1 {font-size:clamp(32px, 9.1vw, 43px);letter-spacing:-.06em;}
+  .narrative .eyebrow {font-size:9px;margin-bottom:12px;}
+  .narrative #scene-description {font-size:12px;line-height:1.55;margin-top:16px;}
+  .narrative .scene-quote {font-size:12px;line-height:1.5;margin-top:13px;}
+  .action-dock {width:100%;}
+  .action-dock .primary-button {flex:1;min-width:0;}
+  .action-dock .secondary-button {min-width:48px;}
+}
